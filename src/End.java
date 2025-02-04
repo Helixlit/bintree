@@ -14,4 +14,10 @@ class End extends Element
         return null;
     }
     
+    @Override
+    public Element insert(Data data)
+    {
+        return new Node(data);
+    }
+    
 }

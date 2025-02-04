@@ -4,8 +4,12 @@ class Node extends Element
     Element left;
     Element right;
     
-    public Node()
-    {};
+    public Node(Data data)
+    {
+        this.data = data;
+        this.left = new End();
+        this.right = new End();
+    };
 
     @Override
     public boolean contains(String string)
@@ -29,5 +33,19 @@ class Node extends Element
             return this.left.search(string);
 
         return this.right.search(string);
+    }
+
+    @Override
+    public Element insert(Data data)
+    {
+        if (this.data.compare(data.toString()) == 0)
+            return this;
+
+        if (this.data.compare(data.toString()) < 0)
+            this.left = this.left.insert(data);
+        else
+            this.right = this.right.insert(data);
+        
+        return this;
     }
 }
